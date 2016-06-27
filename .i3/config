@@ -36,8 +36,8 @@ bindsym $mod+Return exec terminal
 bindsym $mod+q kill
 
 # start program launcher
-#bindsym $mod+d exec --no-startup-id dmenu_recency
-bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -color-window "$bg-color" "$bg-color" "$text-color" "$bg-color" "#9575cd"
+bindsym $mod+d exec --no-startup-id dmenu_recency
+#bindsym $mod+d exec rofi -show run -lines 5 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -color-window "$bg-color" "$bg-color" "$text-color" "$bg-color" "#9575cd"
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -60,7 +60,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 
 # Start Applications
 bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-bindsym $mod+F2 exec palemoon
+bindsym $mod+F2 exec chromium
 bindsym $mod+F3 exec pcmanfm
 # bindsym $mod+F3 exec ranger
 bindsym $mod+Shift+F3 exec gksu pcmanfm
@@ -143,10 +143,10 @@ bindsym $mod+minus scratchpad show
 # set $ws3 3:
 # set $ws3 4:
 
-set $ws1 "home "
-set $ws2 "fam "
-set $ws3 "hols "
-set $ws4 "truck "
+set $ws1 ""
+set $ws2 ""
+set $ws3 ""
+set $ws4 ""
 set $ws5 "5 "
 set $ws6 "6 "
 set $ws7 "7 "
@@ -188,7 +188,7 @@ bindsym $mod+Shift+8 move container to workspace number 8; workspace 8
 
 # Open applications on specific workspaces
 # assign [class="Thunderbird"] 1
-# assign [class="Pale moon"] 2
+ assign [class="Pale moon"] 2
 # assign [class="Pcmanfm"] 3
 # assign [class="Skype"] 5
 
@@ -290,10 +290,20 @@ exec --no-startup-id start_conky_maia
 exec --no-startup-id start_conky_green
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec xrandr --output Virtual1 --mode 1440x900
-exec compton -f	
+exec compton -f
+exec mopidy
+	
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
-	status_command i3status
+	status_command i3blocks -c ~/.i3blocks.conf
+	#i3bar_command i3bar
+	position top
+	font pango:Source Sans Pro-10 10
+	strip_workspace_numbers yes
+	separator_symbol "∞"
+	tray_output eDP1
+	tray_padding 0
+	height 25
 
 ## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
 #	tray_output primary
@@ -304,16 +314,14 @@ bar {
 	font pango:Cantarell,Icons 10
 
 	colors {
-#	background $transparent
-		background #2B2C2B
-                statusline #F9FAF9
-		separator  #454947
-
-#                                  border  backgr. text
-		focused_workspace  #F9FAF9 #16A085 #2B2C2B
-		active_workspace   #595B5B #353836 #FDF6E3
-		inactive_workspace #595B5B #353836 #EEE8D5
-		urgent_workspace   #16A085 #FDF6E3 #E5201D
+#		background $transparent
+		separator #268bd2
+		background #414141
+		statusline #839496
+		focused_workspace #fdf6e3 #6c71c4 #fdf6e3
+		active_workspace #fdf6e3 #6c71c4 #fdf6e3
+		inactive_workspace #002b36 #586e75 #002b36
+		urgent_workspace #d33682 #d33682 #fdf6e3
 	}
 }
 
